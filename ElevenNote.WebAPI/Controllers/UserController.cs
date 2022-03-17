@@ -35,6 +35,19 @@ namespace ElevenNote.WebAPI.Controllers
             }
 
             return BadRequest("User could not be registered.");
+        }
+
+        [HttpGet]
+        [HttpGet("{userId:int")]
+        public async Task<IActionResult> GetById([FromRoute] int userId)
+        {
+            var userDetail = await _service.GetUserByIdAsync(userID);
+            if(userDetail is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userDetail);
         }   
     }
 }
