@@ -17,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using ElevenNote.Services.Token;
 
 namespace ElevenNote.WebAPI
 {
@@ -38,6 +39,7 @@ namespace ElevenNote.WebAPI
 
             //Add user service/interface for Dependency injection here
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITokenService, TokenService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
