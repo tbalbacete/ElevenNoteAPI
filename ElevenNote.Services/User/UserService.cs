@@ -47,6 +47,28 @@ namespace ElevenNote.Services.User
             return numberOfChanges == 1;
         }
 
+        //Get user method to return user without visible password
+        public async Task<UserDetail> GetUserByIdAsync(int userID)
+        {
+            var entity = await _context.Users.FindAsync(userID);
+            if(entity is null)
+            {
+                return null;
+            }
+
+            var userDetail = new UserDetail
+            {
+                Id = entity.Id,
+                Email = entity.Email,
+                Username = entity.Username,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                DateCreated = entity.DateCreated
+            };
+
+            return userDetail;
+        }
+
         //check that email is unique
         private async Task<UserEntity> GetUserByEmailAsync(string email)
         {
