@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using ElevenNote.Services.Token;
+using ElevenNote.Services.Note;
 
 namespace ElevenNote.WebAPI
 {
@@ -37,9 +38,12 @@ namespace ElevenNote.WebAPI
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
+            services.AddHttpContextAccessor();
+
             //Add user service/interface for Dependency injection here
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<INoteService, NoteService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
