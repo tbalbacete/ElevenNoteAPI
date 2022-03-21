@@ -19,6 +19,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using ElevenNote.Services.Token;
 using ElevenNote.Services.Note;
+using ElevenNote.Models.Maps;
 
 namespace ElevenNote.WebAPI
 {
@@ -59,6 +60,7 @@ namespace ElevenNote.WebAPI
                 };
             });
 
+            services.AddAutoMapper(typeof(NoteMapProfile));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

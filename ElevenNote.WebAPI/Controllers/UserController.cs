@@ -45,6 +45,7 @@ namespace ElevenNote.WebAPI.Controllers
         [Authorize]
         [HttpGet]
         [HttpGet("{userId:int}")]
+        [ProducesResponseType(typeof(IEnumerable<UserDetail>), 200)]
         public async Task<IActionResult> GetById([FromRoute] int userId)
         {
             var userDetail = await _userService.GetUserByIdAsync(userId);
